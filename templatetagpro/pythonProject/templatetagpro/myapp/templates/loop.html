@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>loopex</title>
+</head>
+<body>
+ {% for i in data %}
+    <div class="row">
+        {{ i }}
+    </div>
+    {% empty %}
+    <h2>sorry no element is their</h2>
+ {% endfor %}
+</body>
+</html>

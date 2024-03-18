@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homepage</title>
+</head>
+<body bgcolor="783322">
+<h1>this is the home page</h1>
+
+{% block content %}
+<h1>Main template</h1>
+{% endblock %}
+<a href="{% url 'index' %}">go to index</a>
+</body>
+</html>
