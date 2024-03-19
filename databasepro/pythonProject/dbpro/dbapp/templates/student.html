@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+</head> <body>
+<form method="POST" class="post-form" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="sid">Student ID:</label>
+        <input type="text" id="sid" name="sid"><br> <br>
+        <label for="name">Student name:</label>
+        <input type="text" id="name" name="name"><br> <br>
+        <label for="contact">Student Contact:</label>
+        <input type="text" id="contact" name="contact"><br> <br>
+        <label for="address">Student address:</label>
+        <input type="text" id="address" name="address"><br> <br>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-danger" type="button" >Cancel</button>
+</form>
+</body>
+</html>
