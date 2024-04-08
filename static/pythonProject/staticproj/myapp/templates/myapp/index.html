@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>image</title>
-    {% load static%}
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile-Friendly Website</title>
+  {% load static %}
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles if needed */
+  </style>
 </head>
 <body>
-<div id="img">
-<img src="{% static 'images/horse.jpg' %}" alt="My image">
-<img src="{% static 'images/james.jpg' %}" alt="My image">
-<img src="{% static 'images/jass.jpg' %}" alt="My image">
-</div>
+  <div class="container">
+    <h1>Mobile-Friendly Website</h1>
+    <p>This is a simple example of a mobile-friendly website built with Bootstrap.</p>
+
+    <!-- Example content -->
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Section 1</h2>
+        <p>This is the content of section 1.</p>
+      </div>
+      <div class="col-sm-6">
+        <h2>Section 2</h2>
+        <p>This is the content of section 2.</p>
+      </div>
+    </div>
+
+    <!-- Example responsive image -->
+    <div class="row">
+      <div id="img" class="col-sm-12 ">
+        <img src="{% static 'images/horse.jpg' %}" class="img-fluid" alt="Responsive Image">
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
