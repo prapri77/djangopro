@@ -1,0 +1,151 @@
+/*
+Theme: responsive Website Template;
+Author: Prasanth;
+Version: 1.0;
+*/
+body{
+	line-height: 30px;
+	color: #576574;
+}
+.banner-slider{
+	margin-top: 4rem;
+}
+.navbar {
+	background-color: #333;
+	padding: 10px;
+  }
+  
+  .navbar__list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+  }
+  
+  .navbar__item {
+	margin-right: 10px;
+  }
+  
+  .navbar__item--btn {
+	margin-left: auto; /* Push the button to the right */
+  }
+  
+  .header__btn {
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+  }
+
+
+
+
+/*CSS for About Section*/
+.about{
+	margin-top: 5rem;
+}
+
+.about h2{
+	text-transform: uppercase;
+}
+
+.about .about-box{
+	margin: 2rem 0;
+	padding: 3rem 2rem;
+	box-shadow: 0 0 4px 2px #c8d6e5;
+}
+.about .about-text{
+	margin-top: 3rem;
+}
+.about .about-text h5{
+	margin-bottom: 1rem;
+}
+
+/*CSS for Services Section*/
+.services{
+	margin-top: 5rem;
+}
+.services h2{
+	margin-bottom: 2rem;
+	text-transform: uppercase;
+}
+
+.service-text{
+	position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 1px #7f8fa6;
+}
+
+/*CSS for Blogs Section*/
+.blogs{
+	margin-top: 5rem;
+	padding: 2rem 0 4rem 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.blogs h2{
+	margin-bottom: 2rem;
+	text-transform: uppercase;
+	color: white;
+}
+.contact{
+	margin-top: 5rem;
+}
+.contact i{
+	font-size: 1.5rem;
+	margin-top: 1rem;
+}
+
+  
+
+
+/* # Footer */
+
+#footer {
+	background: whitesmoke;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	padding: 30px 0;
+  }
+  
+ 
+  
+  #footer .social-links {
+	margin: 0 0 40px 0;
+  }
+  
+  #footer .social-links a {
+	font-size: 18px;
+	display: inline-block;
+	background: #46423b;
+	color: #fff;
+	line-height: 1;
+	padding: 8px 0;
+	margin-right: 4px;
+	border-radius: 50%;
+	text-align: center;
+	width: 36px;
+	height: 36px;
+	transition: 0.3s;
+  }
+  
+  #footer .social-links a:hover {
+	background: #ffb03b;
+  }
+  
+  #footer .copyright {
+	margin: 0 0 5px 0;
+  }
+  
+  #footer .credits {
+	font-size: 13px;
+  }
