@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'blogapp',
-    'crispy_forms',
-    'crispy_bootstrap3',
+    'loginapp',
+
 
 
 ]
@@ -135,4 +135,3 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
