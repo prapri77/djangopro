@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+  {% load static %}
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static '/style.css' %}">
+  </head>
+<body>
+<div id="form">
+  <div class="container">
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-md-8 col-md-offset-2">
+      <div id="userform">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+          <li class="active"><a href="#signup"  role="tab" data-toggle="tab">Sign up</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="signup">
+              <h2 class="text-uppercase text-center"> Sign Up for Free</h2>
+              <form action="{% url 'register' %}" method="POST" class = "was-validated">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if form.errors %}
+		<div class="alert alert-danger alart-dismissable" role ="alert">
+                <button class="close" data-dismiss="alert">
+                    <small><sup>x</sup></small>
+                  </button>
+
+
+               {% for field in form%}
+               	{% if field.errors%}
+               		{{field.errors}}
+               	{% endif%}
+
+               	{% endfor %}
+
+
+              </div>
+
+
+
+		{% endif %}
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+<!--                    <div class="form-group">-->
+<!--                      <label>First Name<span class="req">*</span> </label>-->
+<!--                      <input type="text" class="form-control" id="first_name" required data-validation-required-message="Please enter your name." autocomplete="off">-->
+<!--                      <p class="help-block text-danger"></p>-->
+<!--                    </div>-->
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+<!--                    <div class="form-group">-->
+<!--                      <label> Last Name<span class="req">*</span> </label>-->
+<!--                      <input type="text" class="form-control" id="last_name" required data-validation-required-message="Please enter your name." autocomplete="off">-->
+<!--                      <p class="help-block text-danger"></p>-->
+<!--                    </div>-->
+                  </div>
+                </div>
+<!--                <div class="form-group">-->
+<!--                  <label> Your Email<span class="req">*</span> </label>-->
+<!--                  <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address." autocomplete="off">-->
+<!--                  <p class="help-block text-danger"></p>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                  <label> Your Phone<span class="req">*</span> </label>-->
+<!--                  <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number." autocomplete="off">-->
+<!--                  <p class="help-block text-danger"></p>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                  <label> Password<span class="req">*</span> </label>-->
+<!--                  <input type="password" class="form-control" id="password" required data-validation-required-message="Please enter your password" autocomplete="off">-->
+<!--                  <p class="help-block text-danger"></p>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label>again Password<span class="req">*</span> </label>-->
+<!--                    <input type="password" class="form-control" id="password1" required data-validation-required-message="Please enter your password" autocomplete="off">-->
+<!--                    <p class="help-block text-danger"></p>-->
+<!--                  </div>-->
+                    By registering, you accept the Terms of Service and Privacy Notice
+                <div class="mrgn-30-top">
+                  <button type="submit" class="btn btn-larger btn-block"/>
+                  Sign up
+                  </button>
+                </div>
+<!--                    </div>-->
+              </form>
+              <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                </small>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- /.container --> 
+</div>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="{% static '/script.js' %}"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+{% block content %}
+{% endblock %}
+</body>
+</html>
+
