@@ -255,4 +255,6 @@ body, html {
       margin-top: 30px
   }
   
-  
+  input{
+    color:#555 !important;
+}

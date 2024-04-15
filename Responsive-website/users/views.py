@@ -45,8 +45,6 @@ def c_login(request):
             messages.error(request, 'Invalid email or password.')
     return render(request, 'login.html')
 
-def success(request):
-    return render(request, 'success.html')
 
 def change_password(request):
 	if request.method =='POST':
@@ -55,12 +53,35 @@ def change_password(request):
 			form.save()
 			update_session_auth_hash(request, form.user)
 			messages.success(request, ('You have edited your password'))
-			return redirect('success')
+			return redirect('registration_success')
 	else: 		#passes in user information
-		form = PasswordChangeForm(CustomUser= request.user)
+		form = PasswordChangeForm(user= request.user)
 
 	context = {'form': form}
 	return render(request, 'forgot_password.html', context)
+
+
+def edit_profile(request):
+	if request.method =='POST':
+		form = CustomUserChangeForm(request.POST, instance= request.user)
+		if form.is_valid():
+			form.save()
+			messages.success(request, ('You have edited your profile'))
+			return redirect('success')
+	else: 		#passes in user information
+		form = CustomUserChangeForm(instance= request.user)
+
+	context = {'form': form}
+	return render(request, 'edit_profile.html', context)
+
+def c_logout(request):
+	logout(request)
+	messages.success(request,('Youre now logged out'))
+	return redirect('success')
+
+
+def success(request):
+    return render(request, 'success.html')
 
 
 

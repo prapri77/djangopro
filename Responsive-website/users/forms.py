@@ -13,6 +13,11 @@ class CustomUserCreationForm(UserCreationForm):
                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}))
     phone = forms.CharField(label="", max_length=15,
                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'phone'}))
+    
+    # password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'password'}))
+
+    password1 = forms.CharField(label='Password', widget=forms.TextInput(attrs={'type': 'text'}))
+    password2 = forms.CharField(label='Confirm Password', widget=forms.TextInput(attrs={'type': 'text'}))
 
     class Meta:
         model = CustomUser
@@ -24,4 +29,4 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'email', 'phone')
+        fields = ('first_name', 'last_name', 'email', 'phone', 'password')
