@@ -258,3 +258,10 @@ body, html {
   input{
     color:#555 !important;
 }
+
+.checkbox-container {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

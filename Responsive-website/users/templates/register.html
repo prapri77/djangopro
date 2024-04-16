@@ -75,7 +75,13 @@
 <!--                    <input type="password" class="form-control" id="password1" required data-validation-required-message="Please enter your password" autocomplete="off">-->
 <!--                    <p class="help-block text-danger"></p>-->
 <!--                  </div>-->
-                    By registering, you accept the Terms of Service and Privacy Notice
+
+                    <div class="checkbox-container">
+                      <!-- Checkbox -->
+                      <input type="checkbox" id="myCheckbox">
+                      <!-- Label for the checkbox -->
+                      <label for="myCheckbox">By registering, you accept the <a href="{% url 'terms' %}">Terms of Service</a> and <a href="{% url 'privacy' %}">Privacy Notice</a></label>
+                  </div>
                 <div class="mrgn-30-top">
                   <button type="submit" class="btn btn-larger btn-block"/>
                   Sign up

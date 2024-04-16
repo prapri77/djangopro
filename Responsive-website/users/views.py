@@ -77,11 +77,17 @@ def edit_profile(request):
 def c_logout(request):
 	logout(request)
 	messages.success(request,('Youre now logged out'))
-	return redirect('success')
+	return redirect('demo')
 
 
 def success(request):
     return render(request, 'success.html')
+
+def terms(request):
+      return render(request, 'terms.html')
+
+def privacy(request):
+      return render(request, 'privacy.html')
 
 
 
