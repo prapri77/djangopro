@@ -9,14 +9,11 @@
     <a href="https://dribbble.com/shots/16258382-Sidebar-design?utm_source=Clipboard_Shot&utm_campaign=joannadaniluk&utm_content=Sidebar%20design&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=joannadaniluk&utm_content=Sidebar%20design&utm_medium=Social_Share">sample</a>
     <h2>successsful</h2>
     <div class="border-top pt-3">
-		{% if user.is_authenticated %}
-		<small class="text-muted">
-			<a href="{% url 'edit_profile' %}">Edit profile</a>
-		</small>
 		<small class="text-muted">
 			<a href="{% url 'logout' %}">Logout</a>
 		</small>
-		{% endif%}
+
+
 	</div>
 </body>
 </html>

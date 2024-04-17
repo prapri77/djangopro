@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from .models import CustomUser
+from django.contrib.auth.views import PasswordChangeView
 
 
 # class SignUp(generic.CreateView):
@@ -46,20 +47,23 @@ def c_login(request):
     return render(request, 'login.html')
 
 
-def change_password(request):
-	if request.method =='POST':
-		form = PasswordChangeForm(data=request.POST, user= request.user)
-		if form.is_valid():
-			form.save()
-			update_session_auth_hash(request, form.user)
-			messages.success(request, ('You have edited your password'))
-			return redirect('registration_success')
-	else: 		#passes in user information
-		form = PasswordChangeForm(user= request.user)
+# def change_password(request):
+# 	if request.method =='POST':
+# 		form = PasswordChangeForm(data=request.POST, user= request.user)
+# 		if form.is_valid():
+# 			form.save()
+# 			update_session_auth_hash(request, form.user)
+# 			messages.success(request, ('You have edited your password'))
+# 			return redirect('registration_success')
+# 	else: 		#passes in user information
+# 		form = PasswordChangeForm(user= request.user)
+#
+# 	context = {'form': form}
+# 	return render(request, 'forgot_password.html', context)
 
-	context = {'form': form}
-	return render(request, 'forgot_password.html', context)
-
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'forgot_password.html'  # Your template for the change password form
+    success_url = reverse_lazy('login')  # URL to redirect after successful password change
 
 def edit_profile(request):
 	if request.method =='POST':
@@ -67,7 +71,7 @@ def edit_profile(request):
 		if form.is_valid():
 			form.save()
 			messages.success(request, ('You have edited your profile'))
-			return redirect('success')
+			return redirect('registration_success')
 	else: 		#passes in user information
 		form = CustomUserChangeForm(instance= request.user)
 
