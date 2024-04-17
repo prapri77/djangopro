@@ -9,7 +9,7 @@
       document.getElementById("searchForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent form submission
         var searchTerm = document.getElementById("searchInput").value.trim();
-        console.log("jj");
+        // console.log("jj");
         if (searchTerm.toLowerCase() == "instagram") {
           window.location.href = "https://www.instagram.com";
         } 
@@ -51,6 +51,9 @@
         }
         else if(searchTerm.toLowerCase() == "aws") {
           window.location.href = "https://aws.amazon.com/";
+        }
+        else if(searchTerm.toLowerCase() == "mozilla") {
+          window.location.href = "https://developer.mozilla.org/en-US/";
         }
         else if (searchTerm.toLowerCase() == ""){
           alert("search only popular website dont left empty")

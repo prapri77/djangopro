@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomLoginForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
@@ -21,8 +21,8 @@ def register(request):
             form.save()
             email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
-            CustomUser = authenticate(email=email, password=password)
-            login(request, CustomUser)
+            user = authenticate(email=email, password=password)
+            login(request, user)
             messages.success(request, ('Youre now registered'))
             return redirect('registration_success')  # Redirect to a success page
     else:
@@ -32,19 +32,39 @@ def register(request):
 def registration_success(request):
     return render(request,'login.html')
 
+# def c_login(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+#         CustomUser = authenticate(request, email=email, password=password)
+#         if CustomUser is not None:
+#             login(request, CustomUser)
+#             # Redirect to a success page or home page
+#             return redirect('success')  # Replace 'home' with your desired URL name
+#         else:
+#             # Invalid login
+#             messages.error(request, 'Invalid email or password.')
+#     return render(request, 'login.html')
+
 def c_login(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        CustomUser = authenticate(request, email=email, password=password)
-        if CustomUser is not None:
-            login(request, CustomUser)
-            # Redirect to a success page or home page
-            return redirect('success')  # Replace 'home' with your desired URL name
-        else:
-            # Invalid login
-            messages.error(request, 'Invalid email or password.')
-    return render(request, 'login.html')
+        form = CustomLoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            # Authenticate against the CustomUser model
+            user = authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                # Redirect to the appropriate page after login
+                return redirect('success')  # Change 'profile' to your desired URL name
+            else:
+                # Handle invalid login credentials
+                messages.success(request,('Error logging in'))
+                return render(request, 'login.html', {'form': form})
+    else:
+        form = CustomLoginForm()
+    return render(request, 'login.html', {'form': form})
 
 
 # def change_password(request):

@@ -15,9 +15,31 @@
         </ul>
         <div class="tab-pane fade in" id="login">
             <h2 class="text-uppercase text-center"></h2>
-            <form action="{% url 'success' %}" method="POST" class = "was-validated">
+            <form action="{% url 'login' %}" method="POST" class = "was-validated">
                 {% csrf_token %}
-              <div class="form-group">
+                {% if form.errors %}
+		<div class="alert alert-danger alart-dismissable" role ="alert">
+                <button class="close" data-dismiss="alert">
+                    <small><sup>x</sup></small>
+                  </button>
+
+
+               {% for field in form%}
+               	{% if field.errors%}
+               		{{field.errors}}
+               	{% endif%}
+
+               	{% endfor %}
+
+
+              </div>
+
+
+
+		{% endif %}
+                {{ form.as_p }}
+     
+              <!-- <div class="form-group">
                 <label> Your Email<span class="req">*</span> </label>
                 <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address." autocomplete="off">
                 <p class="help-block text-danger"></p>
@@ -28,7 +50,9 @@
                 <input type="password" class="form-control" id="password" required data-validation-required-message="Please enter your password" autocomplete="off">
                 <p class="help-block text-danger"></p>
 
-              </div>
+              </div> -->
+
+
               <div class="mrgn-30-top">
                 <button type="submit" class="btn btn-larger btn-block"/>
                 Log in

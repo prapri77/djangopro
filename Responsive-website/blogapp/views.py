@@ -17,3 +17,4 @@ class PostDetail(generic.DetailView):
 
 
 
+

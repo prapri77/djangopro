@@ -5,8 +5,8 @@ from users.models import CustomUser
 # Create your models here.
 
 STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+    (0, "Draft"),
+    (1, "Publish")
 )
 
 class Post(models.Model):

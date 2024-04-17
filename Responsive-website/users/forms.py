@@ -2,15 +2,17 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
 from .models import CustomUser
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinLengthValidator, MaxLengthValidator
 
-class NumericalPhoneField(forms.CharField):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Adding a regex validator to allow only numerical input
-        self.validators.append(RegexValidator(r'^\d+$', 'Please enter a valid phone number.'))
+# class NumericalPhoneField(forms.CharField):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         # Adding a regex validator to allow only numerical input
+#         self.validators.append(RegexValidator(r'^\d+$', 'Please enter a valid phone number.'))
+#         MinLengthValidator(10),
+#         MaxLengthValidator(15),
 
-
+# this is for registration
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(label="Email",
                              widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}), )
@@ -18,13 +20,11 @@ class CustomUserCreationForm(UserCreationForm):
                                  widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
     last_name = forms.CharField(label="Last Name", max_length=100,
                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}))
-    # phone = forms.CharField(label="", max_length=15,
-                                # widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'phone'}))
-    phone = NumericalPhoneField(label='Phone no', max_length=15,
+    phone = forms.CharField(validators=[MinLengthValidator(10), MaxLengthValidator(10),
+                                        RegexValidator(r'^[0-9]*$', 'Only numerical values are allowed.')],
+                                          label="Phone no", max_length=15,
                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'phone'}))
     
-    # password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'password'}))
-
     password1 = forms.CharField(label='Password', max_length=40, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control',}))
     password2 = forms.CharField(label='Confirm Password', max_length=40, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control',}))
 
@@ -34,11 +34,17 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-    password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password'].widget = forms.HiddenInput()
+    # password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
 
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'email', 'phone', 'password')
+        fields = ('first_name', 'last_name', 'email', 'phone')
+       
 
 
-
+class CustomLoginForm(forms.Form):
+    email = forms.EmailField(max_length=254, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'text'}))
