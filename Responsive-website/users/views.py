@@ -67,23 +67,23 @@ def c_login(request):
     return render(request, 'login.html', {'form': form})
 
 
-# def change_password(request):
-# 	if request.method =='POST':
-# 		form = PasswordChangeForm(data=request.POST, user= request.user)
-# 		if form.is_valid():
-# 			form.save()
-# 			update_session_auth_hash(request, form.user)
-# 			messages.success(request, ('You have edited your password'))
-# 			return redirect('registration_success')
-# 	else: 		#passes in user information
-# 		form = PasswordChangeForm(user= request.user)
-#
-# 	context = {'form': form}
-# 	return render(request, 'forgot_password.html', context)
+def change_password(request):
+	if request.method =='POST':
+		form = PasswordChangeForm(data=request.POST, user= request.user)
+		if form.is_valid():
+			form.save()
+			update_session_auth_hash(request, form.user)
+			messages.success(request, ('You have edited your password'))
+			return redirect('registration_success')
+	else: 		#passes in user information
+		form = PasswordChangeForm(user= request.user)
 
-class CustomPasswordChangeView(PasswordChangeView):
-    template_name = 'forgot_password.html'  # Your template for the change password form
-    success_url = reverse_lazy('login')  # URL to redirect after successful password change
+	context = {'form': form}
+	return render(request, 'forgot_password.html', context)
+
+# class CustomPasswordChangeView(PasswordChangeView):
+#     template_name = 'forgot_password.html'  # Your template for the change password form
+#     success_url = reverse_lazy('login')  # URL to redirect after successful password change
 
 def edit_profile(request):
 	if request.method =='POST':
