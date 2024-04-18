@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
 from .models import CustomUser
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator, MinLengthValidator, MaxLengthValidator
 
 # class NumericalPhoneField(forms.CharField):
@@ -31,6 +32,12 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('first_name', 'last_name', 'email', 'phone', 'password1', 'password2')
+
+    def clean_phone(self):
+        phone = self.cleaned_data.get('phone')
+        if CustomUser.objects.filter(phone=phone).exists():
+            raise forms.ValidationError("This phone number is already registered.")
+        return phone
 
 
 class CustomUserChangeForm(UserChangeForm):
