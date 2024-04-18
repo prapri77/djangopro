@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomLoginForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomLoginForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
@@ -82,7 +82,8 @@ def change_password(request):
 	return render(request, 'forgot_password.html', context)
 
 # class CustomPasswordChangeView(PasswordChangeView):
-#     template_name = 'forgot_password.html'  # Your template for the change password form
+#     form_class = PasswordChangeForm
+#     template_name = 'forgot_password.html'  # Your template for the password change form
 #     success_url = reverse_lazy('login')  # URL to redirect after successful password change
 
 def edit_profile(request):
@@ -91,7 +92,7 @@ def edit_profile(request):
 		if form.is_valid():
 			form.save()
 			messages.success(request, ('You have edited your profile'))
-			return redirect('registration_success')
+			return redirect('success')
 	else: 		#passes in user information
 		form = CustomUserChangeForm(instance= request.user)
 
