@@ -1,18 +1,20 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomLoginForm, PasswordChangeForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomLoginForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from .models import CustomUser
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordResetView
 
 
 # class SignUp(generic.CreateView):
 #     form_class = CustomUserCreationForm
 #     success_url = reverse_lazy("login")
 #     template_name = "register.html"
+
+##########registration##################
 
 def register(request):
     if request.method == 'POST':
@@ -28,6 +30,8 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
+
+################registration success####################
 
 def registration_success(request):
     return render(request,'login.html')
@@ -45,6 +49,8 @@ def registration_success(request):
 #             # Invalid login
 #             messages.error(request, 'Invalid email or password.')
 #     return render(request, 'login.html')
+
+#################login########################3
 
 def c_login(request):
     if request.method == 'POST':
@@ -66,6 +72,7 @@ def c_login(request):
         form = CustomLoginForm()
     return render(request, 'login.html', {'form': form})
 
+########################change password#########################
 
 def change_password(request):
 	if request.method =='POST':
@@ -81,10 +88,14 @@ def change_password(request):
 	context = {'form': form}
 	return render(request, 'forgot_password.html', context)
 
-# class CustomPasswordChangeView(PasswordChangeView):
-#     form_class = PasswordChangeForm
-#     template_name = 'forgot_password.html'  # Your template for the password change form
-#     success_url = reverse_lazy('login')  # URL to redirect after successful password change
+# custom password change for before login itself #
+# class CustomPasswordResetView(PasswordResetView):
+#     form_class = CustomPasswordResetForm
+#     template_name = 'forgot_password.html'
+#     email_template_name = 'password_reset_email.html'
+#     success_url = reverse_lazy('login')
+
+###################3edit profile#########################
 
 def edit_profile(request):
 	if request.method =='POST':
@@ -99,17 +110,24 @@ def edit_profile(request):
 	context = {'form': form}
 	return render(request, 'edit_profile.html', context)
 
+################logout#####################
+
 def c_logout(request):
 	logout(request)
 	messages.success(request,('Youre now logged out'))
 	return redirect('demo')
 
+##################success##################
 
 def success(request):
     return render(request, 'success.html')
 
+############terms#################
+
 def terms(request):
       return render(request, 'terms.html')
+
+##################privacy###############
 
 def privacy(request):
       return render(request, 'privacy.html')

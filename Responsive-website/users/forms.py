@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm as DjangoPasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordResetForm
 from django import forms
 from django.contrib.auth.models import User
 from .models import CustomUser
@@ -13,7 +13,7 @@ from django.core.validators import RegexValidator, MinLengthValidator, MaxLength
 #         MinLengthValidator(10),
 #         MaxLengthValidator(15),
 
-# this is for registration
+#################3this is for registration#####################3
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(label="Email",
                              widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}), )
@@ -33,13 +33,14 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('first_name', 'last_name', 'email', 'phone', 'password1', 'password2')
 
+#############this to check unique number#######################333
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
         if CustomUser.objects.filter(phone=phone).exists():
             raise forms.ValidationError("This phone number is already registered.")
         return phone
 
-
+##################this for edit profile ####################33
 class CustomUserChangeForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -50,14 +51,12 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ('first_name', 'last_name', 'email', 'phone')
        
-
+###############this for login form ##########################3
 
 class CustomLoginForm(forms.Form):
     email = forms.EmailField(max_length=254, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'text'}))
 
-
-class PasswordChangeForm(DjangoPasswordChangeForm):
-    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Old Password'}))
-    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'New Password'}))
-    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm New Password'}))
+###########this for password change##################3
+# class CustomPasswordResetForm(PasswordResetForm):
+#     email = forms.EmailField(label="Email", max_length=254, widget=forms.EmailInput(attrs={'autocomplete': 'email'}))

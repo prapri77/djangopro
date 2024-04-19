@@ -15,6 +15,12 @@ urlpatterns = [
     path('logout/', views.c_logout, name='logout'),
     path('terms/', views.terms, name='terms'),
     path('privacy/', views.privacy, name='privacy'),
+
+    #this for checking password before login itself
     # path('change_password/', views.CustomPasswordChangeView.as_view(), name='change_password'),
+    # path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
+    # path('password_reset/done/',  CustomPasswordResetView.as_view(), name='password_reset_done'),  
+    # path('reset/<uidb64>/<token>/',  CustomPasswordResetView.as_view(), name='password_reset_confirm'),  
+    # path('reset/done/', CustomPasswordResetView.as_view(), name='password_reset_success'),  
  ]
 
