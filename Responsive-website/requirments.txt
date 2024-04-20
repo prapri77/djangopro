@@ -1,0 +1,3 @@
+django
+fontawesome
+django-recaptcha-3.0.0

@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .models import CustomUser
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator, MinLengthValidator, MaxLengthValidator
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 # class NumericalPhoneField(forms.CharField):
 #     def __init__(self, *args, **kwargs):
@@ -56,6 +58,7 @@ class CustomUserChangeForm(UserChangeForm):
 class CustomLoginForm(forms.Form):
     email = forms.EmailField(max_length=254, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'text'}))
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
 ###########this for password change##################3
 # class CustomPasswordResetForm(PasswordResetForm):

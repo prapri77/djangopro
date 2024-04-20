@@ -37,8 +37,18 @@
 
 
 		{% endif %}
+<!--                  &lt;!&ndash; Render the CAPTCHA field &ndash;&gt;-->
+<!--        {{ form.captcha }}-->
                 {{ form.as_p }}
-     
+                <!-- Add the CAPTCHA field -->
+<!--        <div class="g-recaptcha" data-sitekey="{{ 6LeyZ8EpAAAAALsKBnudRyP5FYEwEl282A0YFiAj }}"></div>-->
+<!--                &lt;!&ndash; Display CAPTCHA errors if any &ndash;&gt;-->
+<!--                {% if form.captcha.errors %}-->
+<!--            <div class="error">{{ form.captcha.errors }}</div>-->
+<!--        {% endif %}-->
+
+
+
               <!-- <div class="form-group">
                 <label> Your Email<span class="req">*</span> </label>
                 <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address." autocomplete="off">
@@ -76,6 +86,8 @@
 </div>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="{% static '/script.js' %}"></script>
+<!-- Include the reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 {% block content %}

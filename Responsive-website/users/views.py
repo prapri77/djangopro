@@ -65,8 +65,12 @@ def c_login(request):
                 # Redirect to the appropriate page after login
                 return redirect('success')  # Change 'profile' to your desired URL name
             else:
+                for key, error in list(form.errors.items()):
+                      if key == 'captcha' and error[0] == 'This field is required.':
+                            messages.error(request, 'you must tick captcha to move forward for login')
+                            continue
                 # Handle invalid login credentials
-                messages.success(request,('Error logging in'))
+                messages.error(request,('Error logging in'))
                 return render(request, 'login.html', {'form': form})
     else:
         form = CustomLoginForm()
