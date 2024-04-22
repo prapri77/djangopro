@@ -9,12 +9,7 @@ from .models import CustomUser
 from django.contrib.auth.views import PasswordResetView
 
 
-# class SignUp(generic.CreateView):
-#     form_class = CustomUserCreationForm
-#     success_url = reverse_lazy("login")
-#     template_name = "register.html"
-
-##########registration##################
+##########Registration##################
 
 def register(request):
     if request.method == 'POST':
@@ -31,7 +26,7 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
 
-################registration success####################
+################Registration Success####################
 
 def registration_success(request):
     return render(request,'login.html')
@@ -50,7 +45,7 @@ def registration_success(request):
 #             messages.error(request, 'Invalid email or password.')
 #     return render(request, 'login.html')
 
-#################login########################3
+#################Login########################3
 
 def c_login(request):
     if request.method == 'POST':
@@ -76,7 +71,7 @@ def c_login(request):
         form = CustomLoginForm()
     return render(request, 'login.html', {'form': form})
 
-########################change password#########################
+########################Change Password#########################
 
 def change_password(request):
 	if request.method =='POST':
@@ -99,7 +94,7 @@ def change_password(request):
 #     email_template_name = 'password_reset_email.html'
 #     success_url = reverse_lazy('login')
 
-###################3edit profile#########################
+###################Edit Profile#########################
 
 def edit_profile(request):
 	if request.method =='POST':
@@ -114,24 +109,24 @@ def edit_profile(request):
 	context = {'form': form}
 	return render(request, 'edit_profile.html', context)
 
-################logout#####################
+################Logout#####################
 
 def c_logout(request):
 	logout(request)
 	messages.success(request,('Youre now logged out'))
 	return redirect('demo')
 
-##################success##################
+##################Success##################
 
 def success(request):
     return render(request, 'success.html')
 
-############terms#################
+############Terms#################
 
 def terms(request):
       return render(request, 'terms.html')
 
-##################privacy###############
+##################Privacy###############
 
 def privacy(request):
       return render(request, 'privacy.html')
