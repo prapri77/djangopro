@@ -41,3 +41,40 @@ $('#form').find('input, textarea').on('keyup blur focus', function (e) {
     $(target).fadeIn(800);
     
   });
+
+  // this for success page
+
+  // $(function() {
+  $("#submit").click(function() {
+    window.open("payment_calculations_new.php","_self");
+    
+  });
+  $("#edit").click(function() {
+    // window.open("forms.php","_self");
+    $("#input_1").submit();
+  });
+  // });
+
+  $("#payment_proceed").click(function() {
+    window.open("repayment_calculations.php","_self");
+  });
+  function verify_payment(payment_id, t_application_id){
+    $("#loading").show();
+    $.ajax({
+      url : "ajax.php",
+      async : true,
+      type : 'POST',
+      cache : false,
+      data : {
+        action : "verify_payment",
+        t_application_id : t_application_id,
+        payment_id : payment_id
+      },
+      success : function(response) {
+        alert(response);
+        location.reload();
+        $("#loading").hide();
+      }
+    });
+
+  }
