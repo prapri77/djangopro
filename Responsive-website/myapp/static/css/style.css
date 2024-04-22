@@ -1,8 +1,8 @@
 /*
 Theme: responsive Website Template;
 Author: Prasanth;
-Version: 1.0;
 */
+/* @media only screen and (max-width: 767px) { */
 body{
 	line-height: 30px;
 	color: #576574;
@@ -149,3 +149,7 @@ body{
   #footer .credits {
 	font-size: 13px;
   }
+
+
+
+/* } */

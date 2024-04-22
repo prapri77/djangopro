@@ -1,9 +1,8 @@
 
     $(document).ready(function(){
       // Auto play carousel
-      console.log("ghj");
-      $('.carousel').carousel({
-        interval: 1000 // Change interval (time in milliseconds)
+      $('.carousel slide').carousel({
+        interval: 3000 // Change interval (time in milliseconds)
         
       });
       document.getElementById("searchForm").addEventListener("submit", function(event) {
