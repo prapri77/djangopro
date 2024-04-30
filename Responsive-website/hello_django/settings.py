@@ -151,3 +151,16 @@ LOGOUT_REDIRECT_URL = "login"
 RECAPTCHA_PUBLIC_KEY = '6LeyZ8EpAAAAALsKBnudRyP5FYEwEl282A0YFiAj'
 RECAPTCHA_PRIVATE_KEY = '6LeyZ8EpAAAAAL9Sf6K4U31upLE05ZxclIp8ZBTj'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+
+# Emailing settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_FROM = 'prasanthch50@gmail.com'
+EMAIL_HOST_USER = 'prasanthch50@gmail.com'
+EMAIL_HOST_PASSWORD = 'yjxh jhqn ozzv foyc'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+PASSWORD_RESET_TIMEOUT = 14400

@@ -14,6 +14,7 @@ urlpatterns = [
     path('logout/', views.c_logout, name='logout'),
     path('terms/', views.terms, name='terms'),
     path('privacy/', views.privacy, name='privacy'),
+    path('activate/<uidb64>/<token>', views.activate, name='activate')
 
     #this for checking password before login itself
     # path('change_password/', views.CustomPasswordChangeView.as_view(), name='change_password'),
