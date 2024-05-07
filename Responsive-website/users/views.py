@@ -33,7 +33,7 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, "Activation link is invalid!")
 
-    return redirect('demo')
+    return redirect('registration_success')
 
 ###########activate email################
 
