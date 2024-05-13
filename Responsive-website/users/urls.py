@@ -1,7 +1,7 @@
 from django.urls import path
 
-
 from . import views
+from .views import LoginView, VerifyOTPView
 
 
 urlpatterns = [
@@ -14,7 +14,11 @@ urlpatterns = [
     path('logout/', views.c_logout, name='logout'),
     path('terms/', views.terms, name='terms'),
     path('privacy/', views.privacy, name='privacy'),
-    path('activate/<uidb64>/<token>', views.activate, name='activate')
+    path('activate/<uidb64>/<token>', views.activate, name='activate'),
+    
+    # VerifyOTPView
+    path('login/', LoginView.as_view(), name='login'),
+    path('verify-otp/', VerifyOTPView.as_view(), name='verify-otp'),
 
     #this for checking password before login itself
     # path('change_password/', views.CustomPasswordChangeView.as_view(), name='change_password'),
@@ -22,5 +26,5 @@ urlpatterns = [
     # path('password_reset/done/',  CustomPasswordResetView.as_view(), name='password_reset_done'),  
     # path('reset/<uidb64>/<token>/',  CustomPasswordResetView.as_view(), name='password_reset_confirm'),  
     # path('reset/done/', CustomPasswordResetView.as_view(), name='password_reset_success'),  
- ]
+]
 

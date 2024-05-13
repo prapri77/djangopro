@@ -3,3 +3,6 @@ fontawesome
 django-recaptcha-3.0.0
 pillow 
 six
+djangorestframework
+djangorestframework-simplejwt
+requests

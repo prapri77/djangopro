@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'users',
     'blogapp',
     'captcha',
+    'rest_framework',
+    # 'Rest_framework_simplejwt',
 
 
 ]
